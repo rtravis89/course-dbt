@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+
+  - name: postgres 
+    schema: public
+    database: raw
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+      - name: users
+        loaded_at_field: created_at
+        description: >
+          greenery users 
+
+      - name: addresses
+        description: >
+          user addresses
+
+      - name: events
+        loaded_at_field: created_at
+        description: >
+          session events
+
+      - name: orders 
+        loaded_at_field: created_at
+        description: >
+          order information
+        
+      - name: products
+        description: >
+          product current inventory
+
+      - name: order_items
+        description: >
+          order and quantity
+
+      - name: promos
+        description: >
+          promotion status and discount    
+
